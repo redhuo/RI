@@ -35,7 +35,7 @@ void main(){
       printf("\t\t Selecciono la operacion de Recuperar Archivos\n");
       break;
     case 6:
-      printf("\t\t Terminando programa...\n");
+      printf("\t\t Terminando el programa...\n");
       break;
 
   }
