@@ -43,7 +43,7 @@ void agregarUnDocumento(){
   printf("\t\t______________________________________________________\n\n");
 
   printf("\n\t\tINGRESE LA DIRECCION DEL ARCHIVO QUE DESEA AGREGAR.\n");
-  printf("\t\tY presione cualquier tecla para continuar.\n\t\tDireccion: ---->\n");
+  printf("\t\tY presione cualquier tecla para continuar.\n\t\tDireccion: ---->");
   scanf("%s\n", &direccion);
 
   strcat(strcat(new, direccion)," /home/juan/Escritorio/RI");
