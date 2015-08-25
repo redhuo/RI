@@ -2,66 +2,51 @@
 #include "agregarDocumento.h"
 #include "stdlib.h"
 #include "string.h"
-#include <errno.h>
-#include <unistd.h>
 
 //Metodo utilizado para agregar un nuevo documento a RIC
 //No tiene entradas
 //No tiene salidas
 
-struct Metadatos{
+//Metodo utilizado para generar un directorio con los datos de los Archivos
+//Entradas: Recibe un puntero de tipo struct llamado Metadatos
+//Salida: Genera un archivo txt en la carpeta principal con los datos
+int contarArchivos(){
+  FILE *directorio;
+  directorio = fopen("directorio.txt","a");
+  int contador =0 ;
+  char caracter;
+  while ((caracter = fgetc(directorio))!=EOF){
+    if (caracter =='\n'){
+      contador++;
+    }
+  }
+  return contador;
+}
+
+void agregarUnDocumento(){
+
+  //Se almacena la direccion del archivo
+  char direction[30];
   char title[30];
   char creator[20];
   char subject[15];
   char description[50];
   char date[9];
-  char type[5];
-  char format[5];
-  int identifier;
-  char languaje[3];
+  char type[] = "textoplano";
+  char languaje[] = "Spa";
   char contributor[10];
   char source[15];
   char relation[15];
   char coverage[15];
   char rights[20];
-  int size;
-};
-
-
-
-//Metodo utilizado para generar un directorio con los datos de los Archivos
-//Entradas: Recibe un puntero de tipo struct llamado Metadatos
-//Salida: Genera un archivo txt en la carpeta principal con los datos
-void generarDirectorio(struct Metadatos x){
-  printf("Nombre del archivo%s\n", x.title);
-
-}
-
-
-
-
-void agregarUnDocumento(){
-
-  //Se almacena la direccion del archivo
-  char direccion[80];
+  float size;
+  char direccion[30];
   char new[] = "cp ";
   char var[30];
-  char newDos[]=" ";
-  int tamano;
+  char w[20];
+  float tamano;
   FILE *archivo;
-
-  char cwd [100];
-  if (getcwd(cwd, sizeof(cwd)) != NULL){
-      fprintf(stdout, "Current working dir: %s\n", cwd);
-  }
-  else{
-      perror("getcwd() error");
-      return;
-  }
-  strcat(cwd,"\\");
-  strcat(cwd,"RIDIR");
-  mkdir(cwd);
-
+  FILE *directorio;
 
   //Prints interaccion con usuario
   printf("\t\t______________________________________________________\n");
@@ -74,78 +59,111 @@ void agregarUnDocumento(){
 
   //Abre y cierra el archivo para obtener el tamano del mismo
   archivo = fopen(direccion, "r");
-  tamano = sizeof(archivo);
+  tamano = ftell(archivo);
+  char *format = strchr (direccion, '.');
   fclose(archivo);
+  //agrega direccion
+  printf("Direccion  %s Tamanooooo %f",direccion, tamano);
+  strcpy(direction, direccion);
 
 
-//<<<<<<< HEAD
   //Concatena
   strcat(strcat(new, direccion)," /home/juan/Escritorio/RI");
-//=======
-  strcat(strcat(new, direccion),strcat(newDos, cwd));
-
-  //lee el archivo y lo cierra
-  printf("el new es %s\n",new);
-//>>>>>>> f9f054fb6c2f56476dc8a4c0d8eea96f23775968
   system(new);
-
-  //variable para cargar los datos del archivo
-  struct Metadatos documento;
+  printf("\tArchivo agregado...\n");
 
   //Agrega un titulo
-  printf("Agregue el titulo del archivo");
+  printf("Agregue el titulo del archivo: ");
   scanf("%s\n", var);
-  strcpy(documento.title, var);
+  strcpy(title, var);
 
   //Agrega nombre del creador
-  printf("Agregue el nombre del creador del archivo");
+  printf("Agregue el nombre del creador del archivo: ");
   scanf("%s\n", var);
-  strcpy(documento.creator, var);
-
-  //Agrega la fecha del archivo
-  printf("Agregue la fecha del archivo");
-  scanf("%s\n", var);
-  strcpy(documento.date, var);
+  strcpy(creator, var);
 
   //Agrega el asunto del archivo
-  printf("Agregue el asunto del archivo");
+  printf("Agregue el asunto del archivo: ");
   scanf("%s\n", var);
-  strcpy(documento.subject, var);
+  strcpy(subject, var);
 
   //Agrega la descripcion
-  printf("Agregue el descripcion del archivo");
+  printf("Agregue el descripcion del archivo: ");
   scanf("%s\n", var);
-  strcpy(documento.description, var);
+  strcpy(description, var);
+
+  //Agrega la fecha del archivo
+  printf("Agregue la fecha del archivo: ");
+  scanf("%s\n", var);
+  strcpy(date, var);
 
   //Agrega el contribuyente del archivo
-  printf("Agregue el nombre de algun contriyente del archivo");
+  printf("Agregue el nombre de algun contriyente del archivo: ");
   scanf("%s\n", var);
-  strcpy(documento.contributor, var);
+  strcpy(contributor, var);
 
-  //Agrega source del archivo
-  printf("Agregue la fuente del archivo");
+  //Agrega source del archivojjh
+  printf("Agregue la fuente del archivo: ");
   scanf("%s\n", var);
-  strcpy(documento.source, var);
+  strcpy(source, var);
 
   //Agrega la relacion del archivo
-  printf("Agregue la relacion del archivo");
+  printf("Agregue la relacion del archivo: ");
   scanf("%s\n", var);
-  strcpy(documento.relation, var);
+  strcpy(relation, var);
 
   //Agrega la relacion del archivo
-  printf("Agregue la coverage del archivo");
+  printf("Agregue la coverage del archivo: ");
   scanf("%s\n", var);
-  strcpy(documento.coverage, var);
+  strcpy(coverage, var);
 
   //Agrega la relacion del archivo
-  printf("Agregue los derechos del archivo");
+  printf("Agregue los derechos del archivo: ");
   scanf("%s\n", var);
-  strcpy(documento.rights, var);
+  strcpy(rights, var);
+
+  directorio = fopen("directorio.txt","a");
+
+  sprintf(w, "%i", contarArchivos());
+  fputs(w, directorio);
+  fputs("=", directorio);
+  fputs(direction, directorio);
+  fputs("=", directorio);
+  fputs(title, directorio);
+  fputs("=", directorio);
+  fputs(creator, directorio);
+  fputs("=", directorio);
+  fputs(subject, directorio);
+  fputs("=", directorio);
+  fputs(description, directorio);
+  fputs("=", directorio);
+  fputs(date, directorio);
+  fputs("=", directorio);
+  fputs(type, directorio);
+  fputs("=", directorio);
+  fputs(format, directorio);
+  fputs("=", directorio);
+  fputs(languaje, directorio);
+  fputs("=", directorio);
+  fputs(contributor, directorio);
+  fputs("=", directorio);
+  fputs(source, directorio);
+  fputs("=", directorio);
+  fputs(relation, directorio);
+  fputs("=", directorio);
+  fputs(coverage, directorio);
+  fputs("=", directorio);
+  fputs(rights, directorio);
+  fputs("=", directorio);
 
 
-  //Llamado a la funcion  que genera el directorio
-  generarDirectorio(documento);
+  sprintf(w, "%f", size);
+  fputs(w, directorio);
 
+  fputs("=", directorio);
+  fputs("\n", directorio);
+
+  fclose(directorio);
 
   ///home/juan/Desktop/asd.txt
 }
