@@ -25,6 +25,19 @@ struct Metadatos{
   int size;
 };
 
+
+
+//Metodo utilizado para generar un directorio con los datos de los Archivos
+//Entradas: Recibe un puntero de tipo struct llamado Metadatos
+//Salida: Genera un archivo txt en la carpeta principal con los datos
+void generarDirectorio(struct Metadatos x){
+  printf("Nombre del archivo%s\n", x.title);
+
+}
+
+
+
+
 void agregarUnDocumento(){
 
   //Se almacena la direccion del archivo
@@ -32,6 +45,7 @@ void agregarUnDocumento(){
   char new[] = "cp ";
   char var[30];
   int tamano;
+  FILE *archivo;
 
   //Prints interaccion con usuario
   printf("\t\t______________________________________________________\n");
@@ -42,22 +56,18 @@ void agregarUnDocumento(){
   printf("\t\tY presione cualquier tecla para continuar.\n\t\tDireccion: ---->");
   scanf("%s\n", &direccion);
 
+  //Abre y cierra el archivo para obtener el tamano del mismo
+  archivo = fopen(direccion, "r");
+  tamano = sizeof(archivo);
+  fclose(archivo);
 
+
+  //Concatena
   strcat(strcat(new, direccion)," /home/juan/Escritorio/RI");
-  //lee el archivo y lo cierra
   system(new);
-  printf("\t\tArchivo agregado...\n");
-
-
+  
   //variable para cargar los datos del archivo
   struct Metadatos documento;
-
-
-  char date[9];
-  char type[5];
-  char format[5];
-  int identifier;
-  char languaje[3];
 
   //Agrega un titulo
   printf("Agregue el titulo del archivo");
@@ -110,9 +120,9 @@ void agregarUnDocumento(){
   strcpy(documento.rights, var);
 
 
+  //Llamado a la funcion  que genera el directorio
+  generarDirectorio(documento);
+
+
   ///home/juan/Desktop/asd.txt
-
-
-
-  printf("\n\n");
 }

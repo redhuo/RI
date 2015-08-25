@@ -6,5 +6,6 @@
 #define agregarDocumento_h
 
 void agregarUnDocumento();
+void generarDirectorio();
 
 #endif
