@@ -94,17 +94,17 @@ void agregarUnDocumento(){
   strcpy(description, var);
 
   //Agrega la fecha del archivo
-  printf("Agregue la fecha del archivo: ");
+  printf("Agregue la fecha del archivo:\n");
   while (flag==0){
-    printf("Seleccione el formato de la fecha que desea:");
-    printf("a: DD/MM/YYYY\tb: MM/YYYY\tc: YYYY");
+    printf("\t\t\tSeleccione el formato de la fecha que desea:");
+    printf("\n\t\t\t\ta: DD/MM/YYYY\n\t\t\t\tb: MM/YYYY\n\t\t\t\tc: YYYY");
     char selec;
-    scanf("%s", &select);
+    scanf("%c", &selec);
     int dia=1;
     int mes=1;
     int ano=1;
     switch(selec){
-      case 1:
+      case 'a':
         printf("Ingrese el dia:");
         scanf("%i", &dia);
         printf("Ingrese el mes:");
@@ -113,13 +113,13 @@ void agregarUnDocumento(){
         scanf("%i", &ano);
         if((dia>=32) || (mes>=13) || (ano>=2015) || (dia<=0) || (mes<0) || (ano<0)){
           printf("Error en el formato de la fecha, vuelva a realizar la seleccion");
-          flag=0;
+          flag = 0;
         }
         else{
           flag = 1;
         }
         break;
-      case 2:
+      case 'b':
         printf("Ingrese el mes:");
         scanf("%i", &mes);
         printf("Ingrese el año:");
@@ -132,7 +132,7 @@ void agregarUnDocumento(){
           flag = 1;
         }
         break;
-      case 3:
+      case 'c':
         printf("Ingrese el año:");
         scanf("%i", &ano);
         if((ano>=2015) || (ano<0)){
