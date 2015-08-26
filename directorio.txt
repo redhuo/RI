@@ -4,3 +4,5 @@
 0=/home/juan/Desktop/asd.txt=asd=asd=asd=asd=5=rio/RI=.txt=Spa=jaja=ja=ja=ja=jha=0.000000=
 0=/home/juan/Desktop/asd.txt=asd=asd=asd=asd=a=book=.txt=Spa=asd=asd=asd=asd=asd=0.000000=
 0=/home/juan/Desktop/asd.txt=juan=jksajf=asdkfn=dlfn=2=book=.txt=Spa=yo=hnji=khb=kb=jbu=0.000000=
+0=/home/juan/Escritorio/asd.txt=asd=asd=asd=asd=sa=conferenceObject=.txt=Spa=asd=asd=asd=sad=asd=0.000000=
+0=/home/juan/Escritorio/caca.txt=asd=asd=asd=asd=a=patent=.txt=Spa=andrey=yo=vero=s=sd=0.000000=

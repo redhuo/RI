@@ -12,7 +12,7 @@
 //Salida: Genera un archivo txt en la carpeta principal con los datos
 int contarArchivos(){
   FILE *directorio;
-  directorio = fopen("directorio.txt","a");
+  directorio = fopen("directorio.txt","r");
   int contador =0 ;
   char caracter;
   while ((caracter = fgetc(directorio))!=EOF){
@@ -20,6 +20,7 @@ int contarArchivos(){
       contador++;
     }
   }
+  fclose(directorio);
   return contador;
 }
 
@@ -69,7 +70,7 @@ void agregarUnDocumento(){
 
 
   //Concatena
-  strcat(strcat(new, direccion)," /home/juan/Escritorio/RI");
+  strcat(strcat(new, direccion)," /home/juan/Escritorio/RICL/RI");
   system(new);
   printf("\tArchivo agregado...\n");
 
