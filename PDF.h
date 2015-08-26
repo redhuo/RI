@@ -4,5 +4,6 @@
 #ifndef PDF_H
 #define PDF_H
 
-void generarPDF();
+void PDF_PDF();
+char* txtPDF();
 #endif
