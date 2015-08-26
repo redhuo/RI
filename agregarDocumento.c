@@ -26,6 +26,7 @@ int contarArchivos(){
 void agregarUnDocumento(){
 
   //Se almacena la direccion del archivo
+  int flag=0;
   char direction[30];
   char title[30];
   char creator[20];
@@ -94,6 +95,58 @@ void agregarUnDocumento(){
 
   //Agrega la fecha del archivo
   printf("Agregue la fecha del archivo: ");
+  while (flag==0){
+    printf("Seleccione el formato de la fecha que desea:");
+    printf("a: DD/MM/YYYY\tb: MM/YYYY\tc: YYYY");
+    char selec;
+    scanf("%s", &select);
+    int dia=1;
+    int mes=1;
+    int ano=1;
+    switch(selec){
+      case 1:
+        printf("Ingrese el dia:");
+        scanf("%i", &dia);
+        printf("Ingrese el mes:");
+        scanf("%i", &mes);
+        printf("Ingrese el año:");
+        scanf("%i", &ano);
+        if((dia>=32) || (mes>=13) || (ano>=2015) || (dia<=0) || (mes<0) || (ano<0)){
+          printf("Error en el formato de la fecha, vuelva a realizar la seleccion");
+          flag=0;
+        }
+        else{
+          flag = 1;
+        }
+        break;
+      case 2:
+        printf("Ingrese el mes:");
+        scanf("%i", &mes);
+        printf("Ingrese el año:");
+        scanf("%i", &ano);
+        if((mes>=13) || (ano>=2015) || (mes<0) || (ano<0)){
+          printf("Error en el formato de la fecha, vuelva a realizar la seleccion");
+          flag=0;
+        }
+        else{
+          flag = 1;
+        }
+        break;
+      case 3:
+        printf("Ingrese el año:");
+        scanf("%i", &ano);
+        if((ano>=2015) || (ano<0)){
+          printf("Error en el formato de la fecha, vuelva a realizar la seleccion");
+          flag=0;
+        }
+        else{
+          flag = 1;
+        }
+        break;
+      default:
+        printf("Error, vuelva a realizar la seleccion");
+    }
+  }
   scanf("%s\n", var);
   strcpy(date, var);
 
