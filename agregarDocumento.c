@@ -32,8 +32,8 @@ void agregarUnDocumento(){
   char creator[20];
   char subject[15];
   char description[50];
-  char date[9];
-  char type[] = "textoplano";
+  char date[15];
+  char type[25];
   char languaje[] = "Spa";
   char contributor[10];
   char source[15];
@@ -56,7 +56,7 @@ void agregarUnDocumento(){
 
   printf("\n\t\tINGRESE LA DIRECCION DEL ARCHIVO QUE DESEA AGREGAR.\n");
   printf("\t\tY presione cualquier tecla para continuar.\n\t\tDireccion: ---->");
-  scanf("%s\n", &direccion);
+  scanf(" %s", &direccion);
 
   //Abre y cierra el archivo para obtener el tamano del mismo
   archivo = fopen(direccion, "r");
@@ -74,58 +74,61 @@ void agregarUnDocumento(){
   printf("\tArchivo agregado...\n");
 
   //Agrega un titulo
-  printf("Agregue el titulo del archivo: ");
-  scanf("%s\n", var);
+  printf("\n\t\tAgregue el titulo del archivo: ---> ");
+  scanf(" %s", var);
   strcpy(title, var);
 
   //Agrega nombre del creador
-  printf("Agregue el nombre del creador del archivo: ");
-  scanf("%s\n", var);
+  printf("\n\t\tAgregue el nombre del creador del archivo: ---> ");
+  scanf(" %s", var);
   strcpy(creator, var);
 
   //Agrega el asunto del archivo
-  printf("Agregue el asunto del archivo: ");
-  scanf("%s\n", var);
+  printf("\n\t\tAgregue el asunto del archivo: ---> ");
+  scanf(" %s", var);
   strcpy(subject, var);
 
   //Agrega la descripcion
-  printf("Agregue el descripcion del archivo: ");
-  scanf("%s\n", var);
+  printf("\n\t\tAgregue el descripcion del archivo: ---> ");
+  scanf(" %s", var);
   strcpy(description, var);
 
   //Agrega la fecha del archivo
-  printf("Agregue la fecha del archivo:\n");
+  printf("\n\t\tAgregue la fecha del archivo: ---> ");
   while (flag==0){
-    printf("\t\t\tSeleccione el formato de la fecha que desea:");
-    printf("\n\t\t\t\ta: DD/MM/YYYY\n\t\t\t\tb: MM/YYYY\n\t\t\t\tc: YYYY");
+    printf("\n\t\t\tSeleccione el formato de la fecha que desea:");
+    printf("\n\t\t\t\ta: DD/MM/YYYY\n\t\t\t\tb: MM/YYYY\n\t\t\t\tc: YYYY\n\t\t\t\t--->");
     char selec;
-    scanf("%c", &selec);
-    int dia=1;
-    int mes=1;
-    int ano=1;
+    scanf(" %c", &selec);
+    int dia=1,mes=1,ano=1;
+
     switch(selec){
       case 'a':
-        printf("Ingrese el dia:");
-        scanf("%i", &dia);
-        printf("Ingrese el mes:");
-        scanf("%i", &mes);
-        printf("Ingrese el año:");
-        scanf("%i", &ano);
+
+        printf("\n\t\t\tIngrese el dia:");
+        scanf(" %i", &dia);
+        printf("\n\t\t\tIngrese el mes:");
+        scanf(" %i", &mes);
+        printf("\n\t\t\tIngrese el año:");
+        scanf(" %i", &ano);
+
         if((dia>=32) || (mes>=13) || (ano>=2015) || (dia<=0) || (mes<0) || (ano<0)){
           printf("Error en el formato de la fecha, vuelva a realizar la seleccion");
           flag = 0;
         }
+
         else{
           flag = 1;
         }
+
         break;
       case 'b':
-        printf("Ingrese el mes:");
-        scanf("%i", &mes);
-        printf("Ingrese el año:");
-        scanf("%i", &ano);
+        printf("\t\t\tIngrese el mes:");
+        scanf(" %i", &mes);
+        printf("\t\t\tIngrese el año:");
+        scanf(" %i", &ano);
         if((mes>=13) || (ano>=2015) || (mes<0) || (ano<0)){
-          printf("Error en el formato de la fecha, vuelva a realizar la seleccion");
+          printf("\t\t\tError en el formato de la fecha, vuelva a realizar la seleccion");
           flag=0;
         }
         else{
@@ -133,10 +136,10 @@ void agregarUnDocumento(){
         }
         break;
       case 'c':
-        printf("Ingrese el año:");
-        scanf("%i", &ano);
+        printf("\t\t\tIngrese el año:");
+        scanf(" %i", &ano);
         if((ano>=2015) || (ano<0)){
-          printf("Error en el formato de la fecha, vuelva a realizar la seleccion");
+          printf("\n\n\t\t\tError en el formato de la fecha, vuelva a realizar la seleccion");
           flag=0;
         }
         else{
@@ -144,35 +147,61 @@ void agregarUnDocumento(){
         }
         break;
       default:
-        printf("Error, vuelva a realizar la seleccion");
+        printf("\n\t\t\tError, vuelva a realizar la seleccion");
+        break;
     }
   }
-  scanf("%s\n", var);
+
+  scanf(" %s", var);
   strcpy(date, var);
 
+  printf("\n\t\tAgregue el tipo del archivo:\n ");
+  flag = 0;
+  int qwe, t=0;
+
+  char *types[]= {"book", "bacherlorThesis","masterThesis","doctoralThesis","article", "report","book","bookPart","review","conferenceObject","lectura","workingPaper","preprint","contributionToPeriodical","patent","other"};
+
+  printf("\n ");
+	for(t=0;t<16; t++){
+		printf("\n\t\t\t%i. %s ",t, types[t]);
+	}
+
+  while(flag==0){
+    printf("\n\t\tIngrese el valor del tipo que desea ---> ");
+    scanf("%i", &qwe);
+      if ((qwe<16)&&(qwe>0)){
+        strcpy(type, types[qwe]);
+        flag=1;
+      }
+      else{
+        printf("\nError, ha introducido un valor invalido, intentelo de nuevo");
+      }
+
+    }
+
   //Agrega el contribuyente del archivo
-  printf("Agregue el nombre de algun contriyente del archivo: ");
-  scanf("%s\n", var);
+  printf("\n\t\tAgregue el nombre de algun contriyente del archivo: ---> ");
+  scanf("%s", var);
   strcpy(contributor, var);
 
   //Agrega source del archivojjh
-  printf("Agregue la fuente del archivo: ");
-  scanf("%s\n", var);
+  printf("\n\t\tAgregue la fuente del archivo: ---> ");
+  scanf(" %s", var);
   strcpy(source, var);
 
   //Agrega la relacion del archivo
-  printf("Agregue la relacion del archivo: ");
-  scanf("%s\n", var);
+  printf("\n\t\tAgregue la relacion del archivo: ---> ");
+  scanf(" %s", var);
   strcpy(relation, var);
 
   //Agrega la relacion del archivo
-  printf("Agregue la coverage del archivo: ");
-  scanf("%s\n", var);
+  printf("\n\t\tAgregue la coverage del archivo: --->");
+  scanf(" %s", var);
   strcpy(coverage, var);
 
   //Agrega la relacion del archivo
-  printf("Agregue los derechos del archivo: ");
-  scanf("%s\n", var);
+  printf("\n\t\tAgregue los derechos del archivo: ---> ");
+  scanf(" %s", var);
   strcpy(rights, var);
 
   directorio = fopen("directorio.txt","a");
