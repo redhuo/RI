@@ -19,6 +19,7 @@
 /*int main()
 {
     FILE *str,*cptr;
+    
 
     if((str=fopen("hey.pdf","rb"))==NULL)
     {
